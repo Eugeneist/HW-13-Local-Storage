@@ -10,7 +10,7 @@ async function getPost() {
             console.log(post);
         } else {
             const request = await fetch("https://jsonplaceholder.typicode.com/posts/1");
-            request.json();
+            await request.json();
             post = storage.set("key");
             console.log(post);
         }
@@ -26,12 +26,7 @@ getPost();
 
 let isValidDateFormat = (str) => {  
     const date = /^(\d\d\d\d)\/(\d\d)\/(\d\d)\s(\d\d:\d\d)$/;
-    if (str.match(date)) {
-        return true;
-    } else {
-        return false;
-    }
-    // return date.test(str);
+    return !!str.match(date);
 };
 
 
