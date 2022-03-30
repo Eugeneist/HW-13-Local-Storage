@@ -1,35 +1,17 @@
 import storage from "./storage.js";
 
-// TASK 1 V1
-
-fetch("https://jsonplaceholder.typicode.com/posts/1")
-.then((response) => response.json())
-.then((data) => {
-    storage.set("key", data);
-    const post = storage.get("key", data);
-    if (post) {
-        console.log(post);
-    } else {
-        fetch("https://jsonplaceholder.typicode.com/posts/1")
-        .then((response) => response.json())
-        .then((data) => {
-        storage.set("key", data);
-        })
-    };
-})
-
-// TASK 1 V2
+// TASK 1
 
 async function getPost() {
     try{
         const post = storage.get("key");
-        console.log(post);
-
-        if (!post) {
+        
+        if (post) {
+            console.log(post);
+        } else {
             const request = await fetch("https://jsonplaceholder.typicode.com/posts/1");
             request.json();
             post = storage.set("key");
-            console.log(post);
         }
     } catch (error) {
         console.error(error);
@@ -43,12 +25,12 @@ getPost();
 
 let isValidDateFormat = (str) => {  
     const date = /^(\d\d\d\d)\/(\d\d)\/(\d\d)\s(\d\d:\d\d)$/;
-    // if (str.match(date)) {
-    //     return true;
-    // } else {
-    //     return false;
-    // }
-    return date.test(str);
+    if (str.match(date)) {
+        return true;
+    } else {
+        return false;
+    }
+    // return date.test(str);
 };
 
 
