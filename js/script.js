@@ -12,6 +12,7 @@ async function getPost() {
             const request = await fetch("https://jsonplaceholder.typicode.com/posts/1");
             request.json();
             post = storage.set("key");
+            console.log(post);
         }
     } catch (error) {
         console.error(error);
